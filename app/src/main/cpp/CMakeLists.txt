@@ -12,7 +12,7 @@ add_subdirectory(SDL_image)
 add_library( # Sets the name of the library.
         sdlhello
         SHARED
-        SDLHello.cpp)
+        main.cpp)
 
 find_library(SDL2 SDL2)
 find_library(SDL2_image SDL2_image)
