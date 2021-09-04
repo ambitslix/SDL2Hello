@@ -432,7 +432,7 @@ bool init()
             else
             {
                 //Initialize renderer color
-                SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                SDL_SetRenderDrawColor( gRenderer, 0x00, 0x2F, 0x2F, 0x00 );
             }
         }
     }
@@ -446,7 +446,7 @@ bool loadMedia()
     bool success = true;
 
     //Load splash texture
-    if( !gSplashTexture.loadFromFile( "52_hello_mobile/hello.bmp" ) )
+    if( !gSplashTexture.loadFromFile( "icons/queen-64.bmp" ) )
     {
         SDL_Log( "Failed to load splash texture!\n" );
         success = false;
@@ -508,7 +508,7 @@ int main( int argc, char* args[] )
                 }
 
                 //Clear screen
-                SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                SDL_SetRenderDrawColor( gRenderer, 0x00, 0x1F, 0x2F, 0x00 );
                 SDL_RenderClear( gRenderer );
 
                 //Render splash
