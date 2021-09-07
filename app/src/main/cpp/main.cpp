@@ -16,6 +16,8 @@ and may not be redistributed without written permission.*/
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO,     TAG, __VA_ARGS__)
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG,    TAG, __VA_ARGS__)
 
+#include <Swan/Log/Logger.h>
+
 //Texture wrapper class
 class LTexture
 {
@@ -470,10 +472,21 @@ void close()
     SDL_Quit();
 }
 
+static const char logSTDOUT[] = "/data/data/ambits.org.sdlhello/files/stdout.log";
+
+using namespace Swan;
+
 int main( int argc, char* args[] )
 {
+    if(!freopen(logSTDOUT, "w", stdout))
+        LOGE("freopen: %s\n", strerror(errno));
+
+    Log::Manager().registerConsole();
+    //Log::Manager().registerFile("/data/data/ambits.org.sdlhello/files/log.txt");
+
     LOGI("@@@ Log test\n");
 
+    SDL_AndroidRequestPermission("android.permission.BLUETOOTH_CONNECT");
     //Start up SDL and create window
     if( !init() )
     {
@@ -516,6 +529,8 @@ int main( int argc, char* args[] )
 
                 //Update screen
                 SDL_RenderPresent( gRenderer );
+
+                L0G();
             }
         }
     }
